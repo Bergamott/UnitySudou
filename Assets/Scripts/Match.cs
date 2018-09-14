@@ -16,6 +16,9 @@ public class Match : NetworkBehaviour
     SyncListInt scores = new SyncListInt();
     SyncListBool teams = new SyncListBool();
 
+    [SyncVar]
+    int filledNum;
+
     // Use this for initialization
     void Start()
     {
@@ -29,12 +32,22 @@ public class Match : NetworkBehaviour
     public void SetSkillLevel(int s, int[] digits)
     {
         skillLevel = s;
+        filledNum = 0;
         // Set board data
         boardData.Clear();
         for (int i = 0; i < widths[skillLevel]*widths[skillLevel];i++)
         {
             boardData.Add(digits[i]);
+            if (digits[i] > 50)
+            {
+                filledNum++;
+            }
         }
+    }
+
+    public bool IsFull()
+    {
+        return filledNum == widths[skillLevel] * widths[skillLevel];
     }
 
     public void SetActiveTeams(bool[] activeTeams)
@@ -79,6 +92,7 @@ public class Match : NetworkBehaviour
     {
         boardData[v * widths[skillLevel] + h] = d;
         scores[d / 10 - 1]++;
+        filledNum++;
     }
 
     public void WrongDigit(int d)

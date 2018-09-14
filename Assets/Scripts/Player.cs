@@ -36,18 +36,23 @@ public class Player : NetworkBehaviour {
     [Command]
     public void CmdAskToSetDigit(int d, int h, int v)
     {
-        int dig = viewHolder.GetMatch().GetValueAt(h, v);
+        Match m = viewHolder.GetMatch();
+        int dig = m.GetValueAt(h, v);
         if (dig < 10)
         {
             if (dig == d%10) // Correct
             {
                 RpcSetDigit(d, h, v);
-                viewHolder.GetMatch().SetDigitAt(d, h, v);
+                m.SetDigitAt(d, h, v);
+                if (m.IsFull())
+                {
+                    print("Board complete");
+                }
             }
             else // Incorrect
             {
                 RpcWrongDigit(d, h, v);
-                viewHolder.GetMatch().WrongDigit(d);
+                m.WrongDigit(d);
             }
         }
     }
