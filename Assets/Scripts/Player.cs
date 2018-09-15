@@ -25,12 +25,14 @@ public class Player : NetworkBehaviour {
 
 	}
 
-    public void SetTeam(int t)
-    {
+    public void SetTeam(int t) {
         CmdSetTeam(t);
     }
 	
-    [Command]     void CmdSetTeam(int t)     {         team = t;     }
+    [Command] 
+    void CmdSetTeam(int t)  { 
+        team = t; 
+    }
 
     void OnChangeTeam(int t)     {         team = t;         viewHolder.UpdateTeamSettingPlayers();     } 
     [Command]
@@ -77,7 +79,12 @@ public class Player : NetworkBehaviour {
         //viewHolder.DisconnectFromMatch();
     }
 
-    [ClientRpc]     void RpcSetDigit(int d, int h, int v)     {         viewHolder.ConfirmDigit(d, h, v);     } 
+    [ClientRpc] 
+    void RpcSetDigit(int d, int h, int v) 
+    { 
+        viewHolder.ConfirmDigit(d, h, v);
+    } 
+    
     [ClientRpc]
     void RpcWrongDigit(int d, int h, int v)
     {

@@ -58,6 +58,9 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
     public GameObject wrongSound;
     public AudioClip wrongClip;
 
+    int gridFadePhase = 0;
+    float fadeTimer = 0;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -134,6 +137,27 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
             lastDisplayedTime = match.secondsLeft;
             timerText.text = string.Format("{0}:{1}{2}", lastDisplayedTime / 60, (lastDisplayedTime / 10) % 6, lastDisplayedTime % 10);
         }
+
+        // Handle grid fade
+        if (gridFadePhase == 1)
+        {
+        	fadeTimer += Time.deltaTime;
+        	if (fadeTimer < 0.5f)
+        	{
+
+        	}
+        	else
+        	{
+        		fadeTimer = 0;
+        		gridFadePhase = 2;
+        	}
+
+        }
+        else if (gridFadePhase == 2)
+        {
+
+        }
+
 	}
 
     void CheckForActiveTeams()
