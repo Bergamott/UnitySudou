@@ -22,16 +22,16 @@ public class Player : NetworkBehaviour {
             viewHolder.RegisterLocalPlayer(this);
             viewHolder.TryToShowMultiplayerScreen();
         }
-
 	}
 
-    public void SetTeam(int t) {
+    public void SetTeam(int t)
+    {
         CmdSetTeam(t);
     }
 	
-    [Command] 
-    void CmdSetTeam(int t)  { 
-        team = t; 
+    [Command]
+    void CmdSetTeam(int t)     {
+        team = t;
     }
 
     void OnChangeTeam(int t)     {         team = t;         viewHolder.UpdateTeamSettingPlayers();     } 
@@ -48,7 +48,9 @@ public class Player : NetworkBehaviour {
                 m.SetDigitAt(d, h, v);
                 if (m.IsFull())
                 {
-                    print("Board complete");
+                    int s = m.GetSkillLevel();
+                    m.SetSkillLevel(s, viewHolder.networker.GetSolutionForDifficulty(s));
+                    RpcFadeInNewBoard();
                 }
             }
             else // Incorrect
@@ -79,9 +81,9 @@ public class Player : NetworkBehaviour {
         //viewHolder.DisconnectFromMatch();
     }
 
-    [ClientRpc] 
-    void RpcSetDigit(int d, int h, int v) 
-    { 
+    [ClientRpc]
+    void RpcSetDigit(int d, int h, int v)
+    {
         viewHolder.ConfirmDigit(d, h, v);
     } 
     
@@ -108,6 +110,11 @@ public class Player : NetworkBehaviour {
     {
         print("Player.RpcBackButtonPressed");
         Invoke("DelayedDisconnect", 0.5f);
+    }
+    [ClientRpc]
+    void RpcFadeInNewBoard()
+    {
+        viewHolder.FadeInNewBoard();
     }
 
     void DelayedDisconnect()

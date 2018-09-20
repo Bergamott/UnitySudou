@@ -139,23 +139,48 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
         }
 
         // Handle grid fade
-        if (gridFadePhase == 1)
+        if (gridFadePhase > 0)
         {
-        	fadeTimer += Time.deltaTime;
-        	if (fadeTimer < 0.5f)
-        	{
+            SpriteRenderer gridSprite = grid.GetComponent<SpriteRenderer>();
+            fadeTimer += Time.deltaTime;
+            Color fadeColor = Color.white;
+            if (gridFadePhase == 1)
+            {
+                // Fade out
+                if (fadeTimer < 1.0f)
+                {
+                    fadeColor = new Color(1f, 1f, 1f, Mathf.SmoothStep(1.0f, 0, fadeTimer));
+                }
+                else
+                {
+                    fadeColor = new Color(1f, 1f, 1f, 0);
+                    fadeTimer = 0;
+                    gridFadePhase = 2;
+                    HideCursor();
+                    ClearNumbers();
+                    PlaceNumbers();
+                }
 
-        	}
-        	else
-        	{
-        		fadeTimer = 0;
-        		gridFadePhase = 2;
-        	}
-
-        }
-        else if (gridFadePhase == 2)
-        {
-
+            }
+            else if (gridFadePhase == 2)
+            {
+                // Fade in
+                if (fadeTimer < 1.0f)
+                {
+                    fadeColor = new Color(1f, 1f, 1f, Mathf.SmoothStep(0, 1.0f, fadeTimer));
+                }
+                else
+                {
+                    gridFadePhase = 0;
+                    fadeColor = new Color(1f, 1f, 1f, 1f);
+                }
+            }
+            gridSprite.color = fadeColor;
+            GameObject[] oldNumbers = GameObject.FindGameObjectsWithTag("Digit");
+            foreach (GameObject gob in oldNumbers)
+            {
+                gob.GetComponent<SpriteRenderer>().color = fadeColor;
+            }
         }
 
 	}
@@ -361,5 +386,11 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
         // More stuff later
 
 
+    }
+
+    public void FadeInNewBoard()
+    {
+        fadeTimer = 0;
+        gridFadePhase = 1;
     }
 }

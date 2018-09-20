@@ -172,4 +172,9 @@ public class ViewHolder : MonoBehaviour {
             DisconnectFromMatch();
         }
     }
+
+    public void FadeInNewBoard()
+    {
+        multiplayerScreen.FadeInNewBoard();
+    }
 }
