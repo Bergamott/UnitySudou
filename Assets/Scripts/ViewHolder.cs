@@ -9,6 +9,7 @@ public class ViewHolder : MonoBehaviour {
     public TeamSetting teamSetting;
     public Networker networker;
     public MultiplayerScreen multiplayerScreen;
+    public SingleplayerScreen singleplayerScreen;
     public GameObject waitScreen;
 
     public Player localPlayer;
@@ -20,6 +21,7 @@ public class ViewHolder : MonoBehaviour {
         skillSetting.gameObject.SetActive(false);
         teamSetting.gameObject.SetActive(false);
         multiplayerScreen.gameObject.SetActive(false);
+        singleplayerScreen.gameObject.SetActive(false);
         HideWaitScreen();
     }
 
@@ -176,5 +178,13 @@ public class ViewHolder : MonoBehaviour {
     public void FadeInNewBoard()
     {
         multiplayerScreen.FadeInNewBoard();
+    }
+
+    // Offline game
+
+    public void ShowSingleplayerScreenWithSkill(int s)
+    {
+        skillSetting.gameObject.SetActive(false);
+        singleplayerScreen.SetupWithSkillLevel(s);
     }
 }

@@ -57,9 +57,15 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
     public AudioClip rightClip;
     public GameObject wrongSound;
     public AudioClip wrongClip;
+    public GameObject endSound;
+    public AudioClip endClip;
+    public GameObject refreshSound;
+    public AudioClip refreshClip;
 
     int gridFadePhase = 0;
     float fadeTimer = 0;
+
+    public GameObject endSign;
 
 	// Use this for initialization
 	void Start () {
@@ -70,7 +76,7 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
 	void Update () {
         // Handle touches
         bool repositionCursor = false;
-        if (Input.touchCount > 0 && myTeam > 0)
+        if (Input.touchCount > 0 && myTeam > 0 && timeLeft > 0)
         {
             Vector3 world = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             float xCoord = world.x;
@@ -84,7 +90,7 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
                 repositionCursor = true;
             }
         }
-        else if (Input.GetMouseButtonDown(0) && myTeam > 0)
+        else if (Input.GetMouseButtonDown(0) && myTeam > 0 && timeLeft > 0)
         {
             Vector3 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float xCoord = world.x;
@@ -116,7 +122,7 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
         }
 
         // Handle timer
-        if (isHost)
+        if (isHost && timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
             int newTime = Mathf.FloorToInt(timeLeft);
@@ -128,7 +134,9 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
                 }
                 else
                 {
-                    // Match ended
+                    AudioSource source = endSound.GetComponent<AudioSource>();
+                    source.PlayOneShot(endClip, 1.0f);
+                    endSign.gameObject.SetActive(true);
                 }
             }
         }
@@ -179,7 +187,9 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
             GameObject[] oldNumbers = GameObject.FindGameObjectsWithTag("Digit");
             foreach (GameObject gob in oldNumbers)
             {
-                gob.GetComponent<SpriteRenderer>().color = fadeColor;
+                Color dCol = gob.GetComponent<TextMesh>().color;
+                dCol.a = fadeColor.a;
+                gob.GetComponent<TextMesh>().color = dCol;
             }
         }
 
@@ -251,6 +261,7 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
         soundV = -1;
 
         transform.gameObject.SetActive(true);
+        endSign.gameObject.SetActive(timeLeft <= 0);
     }
 
     public void PlaceNumbers()
@@ -392,5 +403,7 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
     {
         fadeTimer = 0;
         gridFadePhase = 1;
+        AudioSource source = refreshSound.GetComponent<AudioSource>();
+        source.PlayOneShot(refreshClip, 1.0f);
     }
 }

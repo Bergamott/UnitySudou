@@ -10,8 +10,7 @@ public class MainMenu : MonoBehaviour, ButtonHolder {
     {
         if (b == 0) // Start button
         {
-            // Temporarily disabled
-            //owner.GoToOfflineSkillSetting();
+            owner.GoToOfflineSkillSetting();
         }
         else if (b == 1) // Compete button
         {

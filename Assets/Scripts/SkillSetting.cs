@@ -69,6 +69,10 @@ public class SkillSetting : MonoBehaviour, ButtonHolder {
             {
                 owner.HostGameSession();
             }
+            else
+            {
+                owner.ShowSingleplayerScreenWithSkill(skillLevel);
+            }
         }
     }
 
