@@ -9,15 +9,22 @@ public class Button : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.color = Color.gray;
+        ButtonHolder bh = owner.GetComponent<ButtonHolder>();
+        if (bh.IsResponsive())
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            sr.color = Color.gray;
+        }
     }
 
     private void OnMouseUp()
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.color = Color.white;
         ButtonHolder bh = owner.GetComponent<ButtonHolder>();
-        bh.ButtonPressed(myNumber);
+        if (bh.IsResponsive())
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            sr.color = Color.white;
+            bh.ButtonPressed(myNumber);
+        }
     }
 }

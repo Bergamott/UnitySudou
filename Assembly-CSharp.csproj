@@ -61,7 +61,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatChannel.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatClient.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatDisconnectCause.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatEventCode.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatOperationCode.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatParameterCode.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatPeer.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatState.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\ChatUserStatus.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonChatApi\IChatClientListener.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\Extensions.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\FriendInfo.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\LoadBalancingClient.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\LoadBalancingPeer.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\Player.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\Room.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\RoomInfo.cs" />
+    <Compile Include="Assets\PhotonAssets\PhotonLoadbalancingApi\WebRpc.cs" />
+    <Compile Include="Assets\PhotonAssets\Plugins\PhotonWebSocket\PingHttp.cs" />
+    <Compile Include="Assets\PhotonAssets\Plugins\PhotonWebSocket\SocketWebTcpCoroutine.cs" />
+    <Compile Include="Assets\PhotonAssets\Plugins\PhotonWebSocket\SocketWebTcpThread.cs" />
+    <Compile Include="Assets\PhotonAssets\Plugins\PhotonWebSocket\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Scripts\Button.cs" />
+    <Compile Include="Assets\Scripts\Dialog.cs" />
     <Compile Include="Assets\Scripts\FruitHolder.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
     <Compile Include="Assets\Scripts\Leaderboard.cs" />
@@ -75,6 +98,8 @@
     <Compile Include="Assets\Scripts\Slider.cs" />
     <Compile Include="Assets\Scripts\TeamSetting.cs" />
     <Compile Include="Assets\Scripts\ViewHolder.cs" />
+    <None Include="Assets\PhotonAssets\Plugins\Photon3Unity3D.xml" />
+    <None Include="Assets\PhotonAssets\Plugins\PhotonWebSocket\Readme-Photon-WebSocket.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/MacMini/Unity/GithubSudoku/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -287,6 +312,12 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>/Users/MacMini/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>/Users/MacMini/Unity/GithubSudoku/Assets/PhotonAssets/Plugins/Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>/Users/MacMini/Unity/GithubSudoku/Assets/PhotonAssets/Plugins/PhotonWebSocket/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Hub/Editor/2018.2.11f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

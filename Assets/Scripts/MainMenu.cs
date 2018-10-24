@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainMenu : MonoBehaviour, ButtonHolder {
 
@@ -25,4 +26,11 @@ public class MainMenu : MonoBehaviour, ButtonHolder {
             owner.GoToOnlineSkillSetting();
         }
     }
+
+    public bool IsResponsive()
+    {
+        // Temp
+        return true;
+    }
+
 }

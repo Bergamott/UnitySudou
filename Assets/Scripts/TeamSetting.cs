@@ -63,6 +63,12 @@ public class TeamSetting : MonoBehaviour, ButtonHolder {
         }
     }
 
+    public bool IsResponsive()
+    {
+        // Temp
+        return true;
+    }
+
     public void UpdatePlayerCounters()
     {
         for (int i = 0; i < 5; i++)             teamPlayers[i] = 0;         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");         foreach (GameObject gob in players)         {             Player pl = gob.GetComponent<Player>();             teamPlayers[pl.team]++;         }         int fullTeams = 0;         for (int i = 1; i < 5; i++)         {             if (teamPlayers[i] > 0)                 fullTeams++;         }         for (int i = 0; i < 4; i++)

@@ -381,6 +381,12 @@ public class MultiplayerScreen : MonoBehaviour, ButtonHolder {
         }
     }
 
+    public bool IsResponsive()
+    {
+        // Temp
+        return true;
+    }
+
     void HideCursor()
     {
         cursorX = -1;

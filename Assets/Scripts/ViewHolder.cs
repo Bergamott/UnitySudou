@@ -11,6 +11,7 @@ public class ViewHolder : MonoBehaviour {
     public MultiplayerScreen multiplayerScreen;
     public SingleplayerScreen singleplayerScreen;
     public GameObject waitScreen;
+    public Dialog dialog;
 
     public Player localPlayer;
     Match activeMatch = null;
@@ -22,6 +23,7 @@ public class ViewHolder : MonoBehaviour {
         teamSetting.gameObject.SetActive(false);
         multiplayerScreen.gameObject.SetActive(false);
         singleplayerScreen.gameObject.SetActive(false);
+        dialog.gameObject.SetActive(false);
         HideWaitScreen();
     }
 
@@ -186,5 +188,11 @@ public class ViewHolder : MonoBehaviour {
     {
         skillSetting.gameObject.SetActive(false);
         singleplayerScreen.SetupWithSkillLevel(s);
+    }
+
+    public void BackToMainMenuFromSinglePlayer()
+    {
+        mainMenu.gameObject.SetActive(true);
+        singleplayerScreen.gameObject.SetActive(false);
     }
 }

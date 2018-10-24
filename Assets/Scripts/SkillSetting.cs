@@ -76,6 +76,12 @@ public class SkillSetting : MonoBehaviour, ButtonHolder {
         }
     }
 
+    public bool IsResponsive()
+    {
+        // Temp
+        return true;
+    }
+
     public void SetSkillLevel(int s)
     {
         skillLevel = s;
